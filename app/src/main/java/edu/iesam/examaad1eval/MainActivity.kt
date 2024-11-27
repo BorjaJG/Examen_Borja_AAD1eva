@@ -2,6 +2,9 @@ package edu.iesam.examaad1eval
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import edu.iesam.examaad1eval.features.data.Ex1DataRepository
+import edu.iesam.examaad1eval.features.data.local.LocalEx1DataRepository
+import edu.iesam.examaad1eval.features.data.remote.RemoteEx1DataRepository
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -15,7 +18,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun executeExercise1(){
-        //Ejecutar el ejercicio 1 desde aquí llamando al Ex1DataRepository directamente
+        val ex1DataRepository = Ex1DataRepository(LocalEx1DataRepository(), RemoteEx1DataRepository())
+        ex1DataRepository.getUser()
+        ex1DataRepository.getItems()
+        ex1DataRepository.getServices()
     }
 
     @OptIn(DelicateCoroutinesApi::class)
